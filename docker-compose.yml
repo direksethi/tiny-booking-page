@@ -1,0 +1,19 @@
+# Booking page. Published on 127.0.0.1:3200: put your reverse proxy or tunnel in front of it.
+
+name: booking-page
+
+volumes:
+  bookings:
+
+services:
+  web:
+    container_name: booking-page
+    build:
+      context: .
+    image: booking-page:app
+    restart: always
+    ports:
+      - "127.0.0.1:3200:3000"
+    env_file: .env
+    volumes:
+      - bookings:/data
